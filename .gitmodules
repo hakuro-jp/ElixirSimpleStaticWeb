@@ -1,0 +1,3 @@
+[submodule "learnjs"]
+	path = learnjs
+	url = ./learnjs
