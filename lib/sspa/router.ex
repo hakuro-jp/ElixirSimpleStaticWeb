@@ -6,7 +6,7 @@ defmodule Sspa.Router do
   plug(:match)
   plug(:dispatch)
 
-  forward("/static", to: Sspa.StaticResources)
+  forward("/", to: Sspa.StaticResources)
 
   match _ do
     send_resp(conn, 404, "not found")
@@ -15,13 +15,13 @@ defmodule Sspa.Router do
   def redirect_index(%Plug.Conn{path_info: path} = conn, _opts) do
     case path do
       [] ->
-        %{conn | path_info: ["static", "index.html"]}
+        %{conn | path_info: ["index.html"]}
 
-      ["app.js"] ->
-                %{conn | path_info: ["static", "app.js"]}
+      # ["app.js"] ->
+      #           %{conn | path_info: ["static", "app.js"]}
 
-      ["vendor.js"] ->
-                %{conn | path_info: ["static", "vendor.js"]}
+      # ["vendor.js"] ->
+      #          %{conn | path_info: ["static", "vendor.js"]}
       _ ->
         conn
     end
